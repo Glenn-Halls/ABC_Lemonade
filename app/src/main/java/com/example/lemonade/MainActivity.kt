@@ -53,6 +53,7 @@ fun LemonadeApp() {
                 imageDescriptionId = R.string.image_lemon_tree
             ) {
                 state++
+                squeezeCount = (2..4).random()
             }
         }
         2 -> {
@@ -62,7 +63,10 @@ fun LemonadeApp() {
                 imageResourceId = R.drawable.lemon_squeeze,
                 imageDescriptionId = R.string.image_lemon
             ) {
-                state++
+                squeezeCount--
+                if (squeezeCount == 0) {
+                    state++
+                }
             }
         }
         3 -> {
@@ -76,6 +80,7 @@ fun LemonadeApp() {
             }
         }
         4 -> {
+            // Display empty glass, ask user to restart
             ImageAndText(
                 textResourceId = R.string.tap_glass,
                 imageResourceId = R.drawable.lemon_restart,
@@ -85,9 +90,7 @@ fun LemonadeApp() {
             }
         }
     }
-
 }
-
 
 @Composable
 fun ImageAndText(
